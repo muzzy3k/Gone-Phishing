@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Security Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Website Security Checker</h1>
+    <form id="websiteForm">
+        <label for="websiteUrl">Enter a website URL:</label>
+        <input type="text" id="websiteUrl" placeholder="https://example.com" required>
+        <button type="submit">Check Security</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("websiteForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const websiteUrl = document.getElementById("websiteUrl").value;
+            const resultElement = document.getElementById("result");
+
+            fetch(websiteUrl)
+                .then(response => {
+                    if (response.url.startsWith('https://')) {
+                        resultElement.innerHTML = `<strong>${websiteUrl}</strong> is secure (uses HTTPS).`;
+                    } else {
+                        resultElement.innerHTML = `<strong>${websiteUrl}</strong> is not secure (does not use HTTPS).`;
+                    }
+                })
+                .catch(error => {
+                    resultElement.innerHTML = `<strong>${websiteUrl}</strong> could not be reached or an error occurred.`;
+                });
+        });
+    </script>
+</body>
+</html>
