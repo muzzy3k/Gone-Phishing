@@ -1,8 +1,9 @@
 const express = require('express');
-const http = require('http');
 const https = require('https');
+const http = require('http');
 const cors = require('cors');
 const helmet = require('helmet');
+const url = require('url');
 
 const app = express();
 const port = 3000;
@@ -22,11 +23,15 @@ app.get('/check-security', (req, res) => {
       protocol.get(websiteUrl, (response) => {
         if (response.statusCode === 200) {
           // The website is reachable, now check if it's secure
-          if (response.connection.encrypted) {
+          if (response.socket.encrypted) {
             res.send(`${websiteUrl} is secure (uses HTTPS).`);
           } else {
             res.send(`${websiteUrl} is reachable but not secure (does not use HTTPS).`);
           }
+        } else if ([301, 302, 303, 307, 308].includes(response.statusCode)) {
+          // If it's a redirect status code, get the final URL
+          const finalUrl = url.resolve(websiteUrl, response.headers.location);
+          res.send(`${websiteUrl} is redirecting to ${finalUrl}.`);
         } else {
           res.send(`${websiteUrl} is not reachable (HTTP status code: ${response.statusCode}).`);
         }
@@ -44,6 +49,7 @@ app.get('/check-security', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
 
 
 
