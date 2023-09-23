@@ -37,24 +37,24 @@
     <p id="result"></p>
 
     <script>
-        document.getElementById("websiteForm").addEventListener("submit", function (e) {
-            e.preventDefault();
+  document.getElementById("websiteForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-            const websiteUrl = document.getElementById("websiteUrl").value;
-            const resultElement = document.getElementById("result");
+    const userInput = document.getElementById("websiteUrl").value;
+    const resultElement = document.getElementById("result");
 
-            fetch(websiteUrl)
-                .then(response => {
-                    if (response.url.startsWith('https://')) {
-                        resultElement.innerHTML = `<strong>${websiteUrl}</strong> is secure (uses HTTPS).`;
-                    } else {
-                        resultElement.innerHTML = `<strong>${websiteUrl}</strong> is not secure (does not use HTTPS).`;
-                    }
-                })
-                .catch(error => {
-                    resultElement.innerHTML = `<strong>${websiteUrl}</strong> could not be reached or an error occurred.`;
-                });
-        });
-    </script>
+    // Make an AJAX request to your server.
+    fetch(`http://localhost:3000/check-security?url=${encodeURIComponent(userInput)}`)
+      .then(response => response.text())
+      .then(data => {
+        resultElement.innerHTML = data;
+      })
+      .catch(error => {
+        resultElement.innerHTML = `An error occurred: ${error.message}`;
+      });
+  });
+</script>
+
+      
 </body>
 </html>
