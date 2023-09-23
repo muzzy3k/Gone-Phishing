@@ -9,8 +9,7 @@ This simple html tool will ask user for an input url for a website. Then it will
 3. In the bottom area of the screen, click the "TERMINAL" tab
 4. Install these npm packages in terminal
    ```bash
-   npm install express axios cors
-   npm install helmet
+   npm install express axios cors helmet
    ```
 5. Type in "node server.js" and hit enter on your keyboard
 6. Then go to the Gone-Phishing folder in windows explorer, and double click "website-checker.html"
