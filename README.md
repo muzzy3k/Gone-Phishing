@@ -7,9 +7,11 @@ This simple html tool will ask user for an input url for a website. Then it will
 1. To run the app locally, Go to Microsoft Visual Studio and click "Open Folder"
 2. Navigate to the "Gone-Phishing" folder and click "Select Folder"
 3. In the bottom area of the screen, click the "TERMINAL" tab
-4. Install these npm packages in terminal\
-   npm install express axios cors\
+4. Install these npm packages in terminal
+   ```bash
+   npm install express axios cors
    npm install helmet
+   ```
 5. Type in "node server.js" and hit enter on your keyboard
 6. Then go to the Gone-Phishing folder in windows explorer, and double click "website-checker.html"
 7. The html site will open up in your default web browser
