@@ -9,8 +9,17 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
+        .top-section {
+            background-color: #007bff; /* Choose your desired color */
+            color: white; /* Text color for the top section */
+            padding: 20px; /* Add some padding for spacing */
+        }
         h1 {
             color: #333;
+            margin-top: 0;
+        }
+        .form-section {
+            padding: 20px;
         }
         input[type="text"] {
             width: 300px;
@@ -28,12 +37,18 @@
     </style>
 </head>
 <body>
+  <div class="top-section">
     <h1>Website Security Checker</h1>
+  </div>
+
+  <div class="form-section">
     <form id="websiteForm">
         <label for="websiteUrl">Enter a website URL:</label>
         <input type="text" id="websiteUrl" placeholder="https://example.com" required>
         <button type="submit">Check Security</button>
     </form>
+  </div>
+
     <p id="result"></p>
 
     <p>Learn more about website security and best practices 
