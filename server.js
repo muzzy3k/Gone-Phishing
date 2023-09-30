@@ -46,7 +46,8 @@ app.get('/check-security', (req, res) => {
           res.send(`${websiteUrl} is not reachable (HTTP status code: ${response.statusCode}).`);
         }
       }).on('error', (error) => {
-        res.send(`${websiteUrl} could not be reached or an error occurred: ${error.message}`);
+        console.error(`Error while making a request to ${websiteUrl}: ${error.message}`);
+        res.status(500).send(`An error occurred: ${error.message}`);
       });
     } else {
       res.send(`${websiteUrl} is not a valid URL (missing "http://" or "https://").`);
