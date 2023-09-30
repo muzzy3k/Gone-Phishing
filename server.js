@@ -27,10 +27,12 @@ app.get('/check-security', (req, res) => {
             const cspHeader = response.headers['content-security-policy'];
             if (cspHeader) {
               // Analyze the CSP header
-              if (isCSPSecure(cspHeader)) {
-                res.send(`${websiteUrl} is secure (uses HTTPS) and has a secure CSP policy: ${cspHeader}`);
+              const isSecureCSP = isCSPSecure(cspHeader);
+              
+              if (isSecureCSP) {
+                res.send(`${websiteUrl} is secure (uses HTTPS) and has a secure CSP policy:\n${cspHeader}`);
               } else {
-                res.send(`${websiteUrl} is secure (uses HTTPS), but the CSP policy may have security issues: ${cspHeader}`);
+                res.send(`${websiteUrl} is secure (uses HTTPS), but the CSP policy may have security issues:\n${cspHeader}`);
               }
             } else {
               res.send(`${websiteUrl} is secure (uses HTTPS) but does not have CSP configured.`);
@@ -46,8 +48,7 @@ app.get('/check-security', (req, res) => {
           res.send(`${websiteUrl} is not reachable (HTTP status code: ${response.statusCode}).`);
         }
       }).on('error', (error) => {
-        console.error(`Error while making a request to ${websiteUrl}: ${error.message}`);
-        res.status(500).send(`An error occurred: ${error.message}`);
+        res.send(`${websiteUrl} could not be reached or an error occurred: ${error.message}`);
       });
     } else {
       res.send(`${websiteUrl} is not a valid URL (missing "http://" or "https://").`);
