@@ -14,6 +14,7 @@
             background-color: #015bbc; /* Choose your desired color */
             color: white; /* Text color for the top section */
             padding: 27px; /* Add some padding for spacing */
+            position: relative;
         }
         .top-left-image {
             position: absolute;
@@ -22,15 +23,8 @@
             width: 150px; /* Adjust the width as needed */
             height: auto; /* Maintain aspect ratio */
         }
-        /* Style the paragraph */
-        .centered-paragraph {
-            width: 600px; /* Adjust the width as needed */
-            margin: 0 auto; /* Automatically center horizontally */
-            text-align: center; /* Center text within the paragraph */
-            padding: 20px;
-        }
         h1 {
-          color: white; /* Set the text color to white */
+            color: white; /* Set the text color to white */
             text-shadow: -1px -1px 0px black, 1px -1px 0px black, -1px 1px 0px black, 1px 1px 0px black; /* Create a black outline */
             margin-top: 0;
         }
@@ -59,6 +53,18 @@
             border: none;
             cursor: pointer;
         }
+        .learn-more-button {
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          font-size: 16px;
+          text-decoration: none;
+          position: absolute;
+          bottom: 10px; /* Adjust the distance from the bottom as needed */
+          right: 10px; /* Adjust the distance from the right as needed */
+           border-radius: 10px;
+        }
         footer {
             background-color: #007bff; /* Footer background color */
             color: white; /* Text color for the footer */
@@ -79,20 +85,13 @@
 </head>
 <body>
   <div class="top-section">
-
     <img src="phishing_images/phishing_logo.jpeg" alt="Logo" class="top-left-image">
     <h1>Website Security Checker</h1>
-  </div>
-  
-  <div>
-    <p class="centered-paragraph">Unsecure websites, which lack proper encryption, can seriously jeopardize user 
-      privacy and data security. When browsing online, it's essential not to place trust in these websites. 
-      Without encryption measures in place, sensitive information such as login credentials or personal details 
-      can be vulnerable to interception by malicious actors. It's crucial to exercise caution and verify the 
-      security of a website before sharing any sensitive data. Look for security indicators like the padlock icon 
-      in the browser's address bar to ensure a safer online experience and protect your personal information.</p>
+    <!-- Add the Learn More button here -->
+    <a class="learn-more-button" href="security_info.html" target="_blank">Learn More</a>
 </div>
 
+  
   <div class="form-section">
     <div class="input-container">
     <form id="websiteForm">
@@ -104,11 +103,6 @@
   </div>
 
     <p id="result"></p>
-
-    <p>Learn more about website security and best practices 
-      <a href="https://www.bu.edu/tech/support/information-security/security-for-everyone/how-to-identify-and-protect-yourself-from-an-unsafe-website/" 
-      target="_blank">click here</a>.
-    </p>
 
     <script>
   document.getElementById("websiteForm").addEventListener("submit", function (e) {
@@ -133,6 +127,5 @@
   <a href="https://www.linkedin.com/in/muzahidul-islam-3aa567289/" target="_blank">Muzahidul Islam</a>|
   <a href="https://www.linkedin.com/in/giovanni-raso1/" target="_blank">Giovanni Raso</a>
 </footer>
-      
 </body>
 </html>
