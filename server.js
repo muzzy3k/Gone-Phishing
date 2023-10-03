@@ -40,6 +40,10 @@ app.get('/check-security', (req, res) => {
           } else {
             res.send(`${websiteUrl} is reachable but not secure (does not use HTTPS).`);
           }
+        } else if (response.statusCode === 403) {
+          res.send(`${websiteUrl} is forbidden. The website is blocking you from connecting to it.`);
+        } else if (response.statusCode === 429) {
+          res.send(`${websiteUrl} has rate limits exceeded. Please try again later.`);
         } else if ([301, 302, 303, 307, 308].includes(response.statusCode)) {
           // If it's a redirect status code, get the final URL
           const finalUrl = url.resolve(websiteUrl, response.headers.location);
